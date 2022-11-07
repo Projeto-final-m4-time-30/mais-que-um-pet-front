@@ -7,6 +7,8 @@ const RoutesTree = () => {
     <Routes>
       <Route path='/login' element={<Login/>} />
       <Route path="/users" element={<Register />} />
+      {/* <Route path="/users" element={<Dasboard />} /> */}
+
       <Route path="*" element={<Navigate replace to="/users" />} />
     </Routes>
   );

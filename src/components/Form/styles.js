@@ -10,45 +10,16 @@ const Form = styled.form`
 .divRow{
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
 
   p{
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    font-size: 16px;
+    font-size: 18px;
     color: #A958B8;
+    margin-bottom: 5px;
   }
 }
-  /* input {
-    height: 45px;
-    border-radius: 12px;
-    background-color: #fff;
-
-    color: #fff;
-    box-shadow: 0 0 1em #08263d59;
-  }  */
-
-  /* select {
-    height: 40px;
-    border-radius: 12px;
-    background-color: #08263d;
-    opacity: 0.5;
-    color: #fff;
-    box-shadow: 0 0 1em #08263d59;
-  } */
-
-  /* h3 {
-    font-size: 30px;
-    color: #08263d;
-  } */
-  /* p {
-    font-size: 14px;
-
-    a {
-      display: flex;
-      flex-direction: column;
-      text-decoration: none;
-      font-size: 14px;
-    }
-  } */
 `;
 
 export default Form;

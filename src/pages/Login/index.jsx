@@ -7,6 +7,7 @@ import Form from "../../components/Form/styles";
 import { Container } from "./styles";
 import { Button } from "../../components/Button/styles";
 import { userContext } from "../../context/userContext";
+import Input from "../../components/Input";
 
 const Login = () => {
   const {
@@ -24,46 +25,38 @@ const Login = () => {
 
   return (
     <Container>
-      <section>
-        <div className="global-login-div">
-          <div className="divLogo">
-          </div>
-
-          <div className="modalLogin">
-            <h3>Login</h3>
-
-            <Form onSubmit={onSubmit}>
-              <label htmlFor="email">
-                <input
-                  type="email"
-                  id="email"
-                  placeholder="E-mail"
-                  {...register("email")}
-                />
-              </label>
-              <span>{errors?.email?.message}</span>
-
-              <label htmlFor="password">
-                <input
-                  type="password"
-                  id="password"
-                  placeholder="Senha"
-                  {...register("password")}
-                />
-              </label>
-              <span>{errors?.password?.message}</span>
-
+      <h3>Login</h3>
+        <Form onSubmit={onSubmit}>
+          <div className="divLogin">
+            <label htmlFor="email">
+              <Input
+                type="email"
+                id="email"
+                placeholder="E-mail"
+                {...register("email")}
+              />
+            </label>
+            <span>{errors?.email?.message}</span>
+            <label htmlFor="password">
+              <Input
+                type="password"
+                id="password"
+                placeholder="Senha"
+                {...register("password")}
+              />
+            </label>
+            <span>{errors?.password?.message}</span>
+            <div>
               <Button type="submit" className="btnLogin">
                 Entrar
               </Button>
-              <p>
-                Ainda não tem cadastro?
-                <a href="/users"> Cadastre-se aqui</a>
-              </p>
-            </Form>
+            </div>
+            <p>
+              Ainda não tem cadastro?
+              <a href="/users"> Cadastre-se aqui</a>
+            </p>
           </div>
-        </div>
-      </section>
+        </Form>
     </Container>
   );
 };
