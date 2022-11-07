@@ -1,11 +1,13 @@
 import { Route, Routes, Navigate } from "react-router-dom";
+import Login from "../pages/Login";
+import Register from "../pages/Register";
 
 const RoutesTree = () => {
   return (
     <Routes>
-      {/* <Route path={'/'} element={COMPONENTE} /> */}
-      {/* <Route path={'/'} element={COMPONENTE} /> */}
-      {/* <Route path={'/'} element={COMPONENTE} /> */}
+      <Route path='/login' element={<Login/>} />
+      <Route path="/users" element={<Register />} />
+      <Route path="*" element={<Navigate replace to="/users" />} />
     </Routes>
   );
 };
