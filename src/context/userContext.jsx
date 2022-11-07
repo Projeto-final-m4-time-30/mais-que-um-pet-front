@@ -58,9 +58,11 @@ export const UserProvider = ({ children }) => {
   };
 
   const registerUser = async (data) =>{
+    console.log(data)
+
     try {
       await Api.post("/users", data);
-      navigate("/");
+      // navigate("/");
     } catch (error) {
       console.error("Ocorreu um erro durante a requisição de cadastro", error);
     }
