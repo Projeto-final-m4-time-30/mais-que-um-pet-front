@@ -2,8 +2,20 @@ import ListaPets from "../../components/cardPets/cardPetsComponets";
 import { Header } from "../../components/Header";
 import { BiMessageAltAdd } from "react-icons/bi";
 import { ContainerPesquisa } from "./styles";
+import { useContext } from "react";
+import { userContext } from "../../context/userContext";
+import { Navigate, useNavigate } from "react-router-dom";
 const Dashboard = () => {
-  return (
+  const { user, loading } = useContext(userContext);
+  // const navigate = useNavigate();
+
+  // if (!user) {
+  //   navigate("/signin", { replace: true });
+  // }
+  console.log(user);
+  if (loading) return <p>Loading...</p>;
+
+  return user ? (
     <>
       <Header />
       <ContainerPesquisa>
@@ -14,6 +26,8 @@ const Dashboard = () => {
       </ContainerPesquisa>
       <ListaPets />
     </>
+  ) : (
+    <h1>Carregando...</h1>
   );
 };
 

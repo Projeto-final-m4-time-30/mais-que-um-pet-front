@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Api } from "../services";
 import { toast } from "react-toastify";
@@ -6,12 +6,11 @@ import { toast } from "react-toastify";
 export const userContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  const [user, setUser] = useState({});
-  const [loading, setLoading] = useState(false);
+  const [user, setUser] = useState();
+  const [loading, setLoading] = useState(true);
 
   const navigate = useNavigate();
-  // const token = localStorage.getItem("@TokenUser:token");
-  // const userId = localStorage.getItem("@IdUser:user");
+  const token = localStorage.getItem("@TokenUser:token");
 
   const loginUser = (data) => {
     Api.post("/login", data)
@@ -19,11 +18,10 @@ export const UserProvider = ({ children }) => {
         const { token } = response.data;
         Api.defaults.headers.common.Authorization = `Bearer ${token}`;
         localStorage.setItem("@TokenUser:token", token);
-        // localStorage.setItem("@IdUser:user", user.id);
         toast.success("Login feito com sucesso!", { autoClose: 2000 });
 
-        // setUser(user);
-        setLoading(true);
+        Api.get("/user").then((res) => setUser(res.data));
+
         navigate("/dashboard", { replace: true });
       })
       .catch((error) => {
@@ -48,21 +46,24 @@ export const UserProvider = ({ children }) => {
       });
   };
 
-  // useEffect(() => {
-  //   async function loadUser() {
-  //     if (token) {
-  //       try {
-  //         Api.defaults.headers.common.Authorization = `Bearer ${token}`;
-  //         const { data } = await Api.get(`/users/${userId}`);
-  //         setUser(data);
-  //         setLoading(false);
-  //       } catch (error) {
-  //         console.error(error);
-  //       }
-  //     }
-  //   }
-  //   loadUser();
-  // }, [token, userId]);
+  useEffect(() => {
+    async function loadUser() {
+      if (token) {
+        try {
+          Api.defaults.headers.common.Authorization = `Bearer ${token}`;
+          const { data } = await Api.get(`/user`);
+          setUser(data);
+          navigate("/dashboard", { replace: true });
+        } catch (error) {
+          console.error(error);
+        }
+      } else {
+        navigate("/signin", { replace: true });
+      }
+      setLoading(false);
+    }
+    loadUser();
+  }, []);
 
   const logout = () => {
     localStorage.clear();
@@ -80,9 +81,8 @@ export const UserProvider = ({ children }) => {
         loginUser,
         registerUser,
         logout,
-        loading,
-        setLoading,
         user,
+        loading,
         setUser,
         back,
       }}
