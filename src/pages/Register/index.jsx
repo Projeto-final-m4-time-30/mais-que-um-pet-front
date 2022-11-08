@@ -17,7 +17,7 @@ const Register = () => {
     resolver: yupResolver(registerSchema),
   });
   const { registerUser, back } = useContext(userContext);
-  console.log("alo")
+
 
   return (
     <Container>
@@ -66,35 +66,35 @@ const Register = () => {
                 <Input
                     type="text"
                     id="city"
-                    {...register("city")}
+                    {...register("address.city")}
                     placeholder="Cidade"
                     error={errors?.city}
                 />
                 <Input
                     type="text"
                     id="state"
-                    {...register("state")}
+                    {...register("address.state")}
                     placeholder="Estado"
                     error={errors?.state}
                 />
                 <Input
                     type="text"
                     id="cep"
-                    {...register("cep")}
+                    {...register("address.cep")}
                     placeholder="CEP"
                     error={errors?.cep}
                 />
                 <Input
                     type="text"
                     id="district"
-                    {...register("district")}
+                    {...register("address.district")}
                     placeholder="Rua"
                     error={errors?.district}
                 />
                 <Input
                     type="text"
                     id="number"
-                    {...register("number")}
+                    {...register("address.number")}
                     placeholder="Número"
                     error={errors?.number}
                 />
@@ -106,28 +106,28 @@ const Register = () => {
                 <Input
                     type="text"
                     id="phone"
-                    {...register("phone")}
+                    {...register("contact.phone")}
                     placeholder="Telefone"
                     error={errors?.phone}
                 />
                 <Input
                     type="text"
                     id="secondary_email"
-                    {...register("secondary_email")}
+                    {...register("contact.secondary_email")}
                     placeholder="E-mail secundário"
                     error={errors?.secondary_email}
                 />
                 <Input
                     type="text"
                     id="whatsapp"
-                    {...register("whatsapp")}
+                    {...register("contact.whatsapp")}
                     placeholder="WhatsApp"
                     error={errors?.whatsapp}
                 />
                 <Input
                     type="text"
                     id="description"
-                    {...register("description")}
+                    {...register("contact.description")}
                     placeholder="Descrição"
                     error={errors?.description}
                 />

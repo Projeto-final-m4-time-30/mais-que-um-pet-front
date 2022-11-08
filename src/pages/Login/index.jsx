@@ -53,7 +53,7 @@ const Login = () => {
             </div>
             <p>
               Ainda não tem cadastro?
-              <a href="/users"> Cadastre-se aqui</a>
+              <a href="/register"> Cadastre-se aqui</a>
             </p>
           </div>
         </Form>

@@ -9,11 +9,9 @@ export const UserProvider = ({ children }) => {
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(false);
 
-
   const navigate = useNavigate();
   const token = localStorage.getItem("@TokenUser:token");
   const userId = localStorage.getItem("@IdUser:user");
-
 
   const loginUser = (data) => {
     Api.post("/login", data)
@@ -34,6 +32,24 @@ export const UserProvider = ({ children }) => {
       });
   };
 
+  const registerUser = async (data) =>{
+    console.log(data)
+    Api.post('/users', data)
+    .then((res) => {
+        toast.success('Cadastro feito com sucesso! Faça o login.', { autoClose: 2000 })
+        setTimeout(()=>{
+            navigate('/signin', {replace: true})
+        }, 1000)
+    })
+    .catch((err)=> toast.error('Algo deu errado! Confira todos os campos preenchidos', { autoClose: 2000 }))  
+    // try {
+    //   await Api.post("/users", data);
+    //   navigate("/dashboard");
+    // } catch (error) {
+    //   console.error("Ocorreu um erro durante a requisição de cadastro", error);
+    // }
+  }
+
   useEffect(() => {
     async function loadUser() {
       if (token) {
@@ -50,26 +66,14 @@ export const UserProvider = ({ children }) => {
     loadUser();
   }, [token, userId]);
 
-
   const logout = () => {
     localStorage.clear();
     toast.warning("Você está sendo deslogado", { autoClose: 2000 });
-    navigate("/");
-  };
-
-  const registerUser = async (data) =>{
-    console.log(data)
-
-    try {
-      await Api.post("/users", data);
-      // navigate("/");
-    } catch (error) {
-      console.error("Ocorreu um erro durante a requisição de cadastro", error);
-    }
+    navigate("/signin");
   };
 
   const back = () => {
-    navigate("/login");
+    navigate("/signin");
   };
   
 
