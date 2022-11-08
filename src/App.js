@@ -3,6 +3,7 @@ import RoutesTree from "./routes";
 import { ToastContainer } from "react-toastify";
 import { UserProvider } from "./context/userContext";
 import { PetProvider } from "./context/petContext";
+import "react-toastify/dist/ReactToastify.min.css"
 
 function App() {
   return (
