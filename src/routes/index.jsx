@@ -6,11 +6,10 @@ import Register from "../pages/Register";
 const RoutesTree = () => {
   return (
     <Routes>
-      <Route path='/login' element={<Login/>} />
-      <Route path="/users" element={<Register />} />
       <Route path="/dashboard" element={<Dashboard />} />
-
-      <Route path="*" element={<Navigate replace to="/users" />} />
+      <Route path="/signin" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="*" element={<Navigate replace to="/signin" />} />
     </Routes>
   );
 };

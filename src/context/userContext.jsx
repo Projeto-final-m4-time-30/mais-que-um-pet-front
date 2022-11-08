@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Api } from "../services";
 import { toast } from "react-toastify";
@@ -9,22 +9,20 @@ export const UserProvider = ({ children }) => {
   const [user, setUser] = useState({});
   const [loading, setLoading] = useState(false);
 
-
   const navigate = useNavigate();
-  const token = localStorage.getItem("@TokenUser:token");
-  const userId = localStorage.getItem("@IdUser:user");
-
+  // const token = localStorage.getItem("@TokenUser:token");
+  // const userId = localStorage.getItem("@IdUser:user");
 
   const loginUser = (data) => {
     Api.post("/login", data)
       .then((response) => {
-        const { user, accessToken } = response.data;
+        const { token } = response.data;
         Api.defaults.headers.common.Authorization = `Bearer ${token}`;
-        localStorage.setItem("@TokenUser:token", accessToken);
-        localStorage.setItem("@IdUser:user", user.id);
+        localStorage.setItem("@TokenUser:token", token);
+        // localStorage.setItem("@IdUser:user", user.id);
         toast.success("Login feito com sucesso!", { autoClose: 2000 });
 
-        setUser(user)
+        // setUser(user);
         setLoading(true);
         navigate("/dashboard", { replace: true });
       })
@@ -34,44 +32,47 @@ export const UserProvider = ({ children }) => {
       });
   };
 
-  useEffect(() => {
-    async function loadUser() {
-      if (token) {
-        try {
-          Api.defaults.headers.common.Authorization = `Bearer ${token}`;
-          const { data } = await Api.get(`/users/${userId}`);
-          setUser(data);
-          setLoading(false);
-        } catch (error) {
-          console.error(error);
-        }
-      }
-    }
-    loadUser();
-  }, [token, userId]);
+  const registerUser = (data) => {
+    Api.post("/users", data)
+      .then(() => {
+        toast.success("Cadastro feito com sucesso! Faça o login.", {
+          autoClose: 2000,
+        });
+        navigate("/signin", { replace: true });
+      })
+      .catch((err) => {
+        console.log("err", err);
+        toast.error("Algo deu errado! Confira todos os campos preenchidos", {
+          autoClose: 2000,
+        });
+      });
+  };
 
+  // useEffect(() => {
+  //   async function loadUser() {
+  //     if (token) {
+  //       try {
+  //         Api.defaults.headers.common.Authorization = `Bearer ${token}`;
+  //         const { data } = await Api.get(`/users/${userId}`);
+  //         setUser(data);
+  //         setLoading(false);
+  //       } catch (error) {
+  //         console.error(error);
+  //       }
+  //     }
+  //   }
+  //   loadUser();
+  // }, [token, userId]);
 
   const logout = () => {
     localStorage.clear();
     toast.warning("Você está sendo deslogado", { autoClose: 2000 });
-    navigate("/");
-  };
-
-  const registerUser = async (data) =>{
-    console.log(data)
-
-    try {
-      await Api.post("/users", data);
-      // navigate("/");
-    } catch (error) {
-      console.error("Ocorreu um erro durante a requisição de cadastro", error);
-    }
+    navigate("/signin");
   };
 
   const back = () => {
-    navigate("/login");
+    navigate("/signin");
   };
-  
 
   return (
     <userContext.Provider
@@ -83,10 +84,10 @@ export const UserProvider = ({ children }) => {
         setLoading,
         user,
         setUser,
-        back
+        back,
       }}
-      >
-        {children}
-      </userContext.Provider>
-  )
+    >
+      {children}
+    </userContext.Provider>
+  );
 };

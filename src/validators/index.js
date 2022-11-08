@@ -22,14 +22,13 @@ export const registerSchema = yup.object().shape({
     //   /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
     //   "Deve conter 8 caracteres,uma maiuscula, uma minuscula,um numero e um caractere especial!"
     // ),
-  cep: yup.string().required("Campo obrigatório"),
-  city: yup.string().required("Campo obrigatório"),
-  state: yup.string().required("Campo obrigatório"),
-  district: yup.string().required("Campo obrigatório"),
-  number: yup.string().required("Campo obrigatório"),
-  phone: yup.string().required("Campo obrigatório"),
-  whatsapp: yup.string().required("Campo obrigatório"),
-  description: yup.string().required("Campo obrigatório"),
+  // city: yup.string().required("Campo obrigatório"),
+  // state: yup.string().required("Campo obrigatório"),
+  // district: yup.string().required("Campo obrigatório"),
+  // number: yup.string().required("Campo obrigatório"),
+  // phone: yup.string().required("Campo obrigatório"),
+  // whatsapp: yup.string().required("Campo obrigatório"),
+  // description: yup.string().required("Campo obrigatório"),
 
 
 
