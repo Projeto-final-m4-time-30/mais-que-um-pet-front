@@ -1,4 +1,5 @@
 import { Route, Routes, Navigate } from "react-router-dom";
+import ModalPet from "../components/Modal";
 import Dashboard from "../pages/Dashboard";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
@@ -10,6 +11,8 @@ const RoutesTree = () => {
       <Route path="/signin" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="*" element={<Navigate replace to="/signin" />} />
+      {/* 
+      <Route path="/modal" element={<ModalPet />} /> */}
     </Routes>
   );
 };

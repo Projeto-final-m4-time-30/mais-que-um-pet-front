@@ -7,11 +7,12 @@ import { userContext } from "../../context/userContext";
 import { Navigate, useNavigate } from "react-router-dom";
 const Dashboard = () => {
   const { user, loading } = useContext(userContext);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  // if (!user) {
-  //   navigate("/signin", { replace: true });
-  // }
+  if (!user) {
+    navigate("/signin", { replace: true });
+  }
+
   console.log(user);
   if (loading) return <p>Loading...</p>;
 

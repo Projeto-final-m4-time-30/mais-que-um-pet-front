@@ -57,8 +57,6 @@ export const UserProvider = ({ children }) => {
         } catch (error) {
           console.error(error);
         }
-      } else {
-        navigate("/signin", { replace: true });
       }
       setLoading(false);
     }

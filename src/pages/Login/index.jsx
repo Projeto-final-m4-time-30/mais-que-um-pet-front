@@ -8,6 +8,7 @@ import { Container } from "./styles";
 import { Button } from "../../components/Button/styles";
 import { userContext } from "../../context/userContext";
 import Input from "../../components/Input";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const {
@@ -26,37 +27,37 @@ const Login = () => {
   return (
     <Container>
       <h3>Login</h3>
-        <Form onSubmit={onSubmit}>
-          <div className="divLogin">
-            <label htmlFor="email">
-              <Input
-                type="email"
-                id="email"
-                placeholder="E-mail"
-                {...register("email")}
-              />
-            </label>
-            <span>{errors?.email?.message}</span>
-            <label htmlFor="password">
-              <Input
-                type="password"
-                id="password"
-                placeholder="Senha"
-                {...register("password")}
-              />
-            </label>
-            <span>{errors?.password?.message}</span>
-            <div>
-              <Button type="submit" className="btnLogin">
-                Entrar
-              </Button>
-            </div>
-            <p>
-              Ainda não tem cadastro?
-              <a href="/register"> Cadastre-se aqui</a>
-            </p>
+      <Form onSubmit={onSubmit}>
+        <div className="divLogin">
+          <label htmlFor="email">
+            <Input
+              type="email"
+              id="email"
+              placeholder="E-mail"
+              {...register("email")}
+            />
+          </label>
+          <span>{errors?.email?.message}</span>
+          <label htmlFor="password">
+            <Input
+              type="password"
+              id="password"
+              placeholder="Senha"
+              {...register("password")}
+            />
+          </label>
+          <span>{errors?.password?.message}</span>
+          <div>
+            <Button type="submit" className="btnLogin">
+              Entrar
+            </Button>
           </div>
-        </Form>
+          <p>
+            Ainda não tem cadastro?
+            <Link to={"/register"}>Cadastre-se</Link>
+          </p>
+        </div>
+      </Form>
     </Container>
   );
 };
