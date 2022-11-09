@@ -15,6 +15,17 @@ export const registerSchema = yup.object().shape({
     )
     .required("Campo obrigatório"),
   email: yup.string().email("E-mail inválido").required("Campo obrigatório"),
+
+  password: yup.string().required("Campo obrigatório"),
+
+});
+
+export const createPetSchema = yup.object().shape({
+  name: yup.string().required("Campo obrigatório"),
+  age: yup.string().required("Campo obrigatório"),
+  gender: yup.string().required("Campo obrigatório"),
+});
+
   password: yup
     .string()
     .required("Campo obrigatório"),
@@ -26,3 +37,4 @@ export const createPetSchema = yup.object().shape({
 	age: yup.string().required("Campo obrigatório"),
 	gender: yup.string().required("Campo obrigatório"),
 })
+
