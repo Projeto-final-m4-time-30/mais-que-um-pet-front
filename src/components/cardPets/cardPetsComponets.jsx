@@ -24,16 +24,14 @@ function ListaPets() {
     <>
       <ListCards>
         {pets.map((pet) => (
-          <Card
-            key={pet.id}
-            id={pet.id}
-            onClick={() => {
-              setOwnerId(() => pet.user_register);
-              setModalPetOverview(pet);
-              handleModalPetOpen();
-            }}
-          >
-            <figure>
+          <Card key={pet.id} id={pet.id}>
+            <figure
+              onClick={() => {
+                setOwnerId(() => pet.user_register);
+                setModalPetOverview(pet);
+                handleModalPetOpen();
+              }}
+            >
               {pet.info_pet.pet_image !== "" ? (
                 <img src={pet.info_pet.pet_image} alt="Foto do pet" />
               ) : (
