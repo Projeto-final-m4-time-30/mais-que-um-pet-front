@@ -17,11 +17,10 @@ export const PetProvider = ({ children }) => {
   const token = localStorage.getItem("@TokenUser:token")
 
   const createPet = (data) =>{
-    console.log(data)
     Api.post("/pet", data)
     .then((res)=>{
       Api.defaults.headers.common.Authorization = `Bearer ${token}`;
-      console.log(pets)
+      setPets(previous => [...previous, data])
       toast.success("Pet cadastrado com sucesso!", { autoClose: 2000 });
     })
     .catch((err)=> {
@@ -29,6 +28,14 @@ export const PetProvider = ({ children }) => {
       console.error("Esse é o erro", err);
     })
   }
+
+    async function getInfoPet(){
+      try {
+        await Api.get(`/pet`)
+      } catch (error) {
+        console.error(error);
+      }
+    }
 
     const modalCreatePetOpen = () =>{
       setIsCreateOpenModal(true)
@@ -38,8 +45,6 @@ export const PetProvider = ({ children }) => {
       setIsCreateOpenModal(false)
     }
 
-
-  
     useEffect(() => {
       Api.get("/pet/adoptable").then((res) => setPets(res.data));
     }, []);
@@ -64,6 +69,7 @@ export const PetProvider = ({ children }) => {
     <petContext.Provider
       value={{
         createPet,
+        getInfoPet,
         modalCreatePetOpen,
         modalCreatePetClose,
         isCreateOpenModal,
