@@ -5,8 +5,12 @@ import { ContainerPesquisa } from "./styles";
 import { useContext } from "react";
 import { userContext } from "../../context/userContext";
 import { useNavigate } from "react-router-dom";
+import ModalCreatePet from "../../components/ModalCreatePet";
+import { petContext } from "../../context/petContext";
 const Dashboard = () => {
   const { user, loading } = useContext(userContext);
+  const { modalCreatePetOpen } = useContext(petContext);
+
   const navigate = useNavigate();
 
   if (!user) {
@@ -20,12 +24,13 @@ const Dashboard = () => {
     <>
       <Header />
       <ContainerPesquisa>
-        <BiMessageAltAdd size={40} />
+        <BiMessageAltAdd size={40} onClick={modalCreatePetOpen}/>
         <form action="">
           <input type="text" />
         </form>
       </ContainerPesquisa>
       <ListaPets />
+      <ModalCreatePet />
     </>
   ) : (
     <h1>Carregando...</h1>
