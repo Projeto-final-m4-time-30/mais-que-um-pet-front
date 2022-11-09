@@ -4,7 +4,7 @@ import { BiMessageAltAdd } from "react-icons/bi";
 import { ContainerPesquisa } from "./styles";
 import { useContext } from "react";
 import { userContext } from "../../context/userContext";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const Dashboard = () => {
   const { user, loading } = useContext(userContext);
   const navigate = useNavigate();
