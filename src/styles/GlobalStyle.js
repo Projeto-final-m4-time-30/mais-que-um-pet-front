@@ -5,8 +5,8 @@ const GlobalStyle = createGlobalStyle`
         //Main colors
         --purple-hover: #EB78FF;
         --purple: #A958B8;
-        --orange: #FF6A45
-        --orange-hover: #B35139
+        --orange: #FF6A45;
+        --orange-hover: #B35139;
 
 
         //gray scale pallete
