@@ -7,6 +7,8 @@ export const PetProvider = ({ children }) => {
   const [openModalAdopt, setOpenModalAdopt] = useState(false);
   const [pets, setPets] = useState([]);
   const [pet, setPet] = useState();
+  const [modalPetIsOpen, setModalPetIsOpen] = useState(false);
+  const [modalPetOverview, setModalPetOverview] = useState({});
 
   useEffect(() => {
     Api.get("/pet/adoptable").then((res) => setPets(res.data));
@@ -19,6 +21,14 @@ export const PetProvider = ({ children }) => {
   function closeModal() {
     setOpenModalAdopt(false);
   }
+
+  function handleModalPetOpen() {
+    setModalPetIsOpen(true);
+  }
+
+  function handleModalPetClose() {
+    setModalPetIsOpen(false);
+  }
   return (
     <petContext.Provider
       value={{
@@ -28,6 +38,11 @@ export const PetProvider = ({ children }) => {
         pets,
         pet,
         setPet,
+        modalPetIsOpen,
+        handleModalPetClose,
+        handleModalPetOpen,
+        modalPetOverview,
+        setModalPetOverview,
       }}
     >
       {children}

@@ -6,6 +6,7 @@ import { useContext } from "react";
 import { userContext } from "../../context/userContext";
 import { useNavigate } from "react-router-dom";
 import ModalAdopt from "../../components/ModalAdopt";
+import ModalPet from "../../components/ModalPet";
 const Dashboard = () => {
   const { user, loading } = useContext(userContext);
   const navigate = useNavigate();
@@ -27,6 +28,8 @@ const Dashboard = () => {
         </form>
       </ContainerPesquisa>
       <ListaPets />
+
+      <ModalPet />
     </>
   ) : (
     <h1>Carregando...</h1>

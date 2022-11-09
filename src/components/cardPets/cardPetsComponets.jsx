@@ -11,6 +11,9 @@ function ListaPets() {
   const { user } = useContext(userContext);
   const { openModal, pets, setPet } = useContext(petContext);
 
+  const { handleModalPetOpen, setModalPetOverview } = useContext(petContext);
+  const { setOwnerId } = useContext(userContext);
+
   function openModalSetId(id) {
     openModal();
     const pet = pets.find((p) => p.id === id);
@@ -21,7 +24,16 @@ function ListaPets() {
     <>
       <ListCards>
         {pets.map((pet) => (
-          <Card key={pet.id} id={pet.id}>
+          <Card
+            key={pet.id}
+            id={pet.id}
+            onClick={() => {
+              console.log(pet.user_register);
+              setOwnerId(() => pet.user_register);
+              setModalPetOverview(pet);
+              handleModalPetOpen();
+            }}
+          >
             <figure>
               {pet.info_pet.pet_image !== "" ? (
                 <img src={pet.info_pet.pet_image} alt="Foto do pet" />
