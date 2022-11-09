@@ -18,7 +18,8 @@ export const HeaderStyle = styled.header`
       display: flex;
 
       img {
-        width: 3rem;
+        width: 4rem;
+        height: 4rem;
         border-radius: 50%;
       }
 

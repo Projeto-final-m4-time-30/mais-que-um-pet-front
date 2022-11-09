@@ -3,7 +3,7 @@ import { userContext } from "../../context/userContext.jsx";
 import { HeaderStyle } from "./styles.js";
 
 export const Header = () => {
-  const { logout } = useContext(userContext);
+  const { logout, user } = useContext(userContext);
 
   return (
     <HeaderStyle>
@@ -11,8 +11,8 @@ export const Header = () => {
         <h1>Mais Que Um Pet</h1>
         <nav>
           <img
-            src="https://st.depositphotos.com/1146092/2108/i/600/depositphotos_21082823-stock-photo-fitness-dog.jpg"
-            alt="Foto de user"
+            src={user.user_image}
+            alt={user.user_name}
           />
           <div>
             <button onClick={logout}>Logout</button>
