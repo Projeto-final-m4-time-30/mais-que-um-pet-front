@@ -1,16 +1,13 @@
 import ReactModal from "react-modal";
 import { Container } from "./styles";
 import { AiFillCloseCircle } from "react-icons/ai";
-import Form from "../Form/styles";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { createPetSchema } from "../../validators";
 import Input from "../../components/Input";
 import { Button } from "../Button/styles";
 import { petContext } from "../../context/petContext";
-
-
-const { useState, useContext } = require("react");
+import { useContext } from "react";
 
 const customStyles = {
     content: {
@@ -78,7 +75,7 @@ const ModalCreatePet = () =>{
                                 <Input
                                 type="pet_image"
                                 placeholder="Foto do Pet"
-                                {...register("pet_image")}
+                                {...register("info_pet.pet_image")}
                                 />
                             </label>
                             <span>{errors?.pet_image?.message}</span>
@@ -86,7 +83,7 @@ const ModalCreatePet = () =>{
                                 <Input
                                 type="size"
                                 placeholder="Tamanho do Pet"
-                                {...register("size")}
+                                {...register("info_pet.size")}
                                 />
                             </label>
                             <span>{errors?.gender?.message}</span>
@@ -94,7 +91,7 @@ const ModalCreatePet = () =>{
                                 <Input
                                 type="color_pet"
                                 placeholder="Cor do Pet"
-                                {...register("color")}
+                                {...register("info_pet.color")}
                                 />
                             </label>
                             <span>{errors?.gender?.message}</span>
@@ -102,7 +99,7 @@ const ModalCreatePet = () =>{
                                 <Input
                                 type="species"
                                 placeholder="Espécie"
-                                {...register("species")}
+                                {...register("info_pet.species")}
                                 />
                             </label>
                             <span>{errors?.gender?.message}</span>
@@ -110,7 +107,7 @@ const ModalCreatePet = () =>{
                                 <Input
                                 type="description"
                                 placeholder="Descrição do Pet"
-                                {...register("description")}
+                                {...register("info_pet.description")}
                                 />
                             </label>
                             <span>{errors?.gender?.message}</span>
@@ -118,7 +115,7 @@ const ModalCreatePet = () =>{
                                 <Input
                                 type="vaccine"
                                 placeholder="Vacinas"
-                                {...register("vaccine")}
+                                {...register("info_pet.vaccine")}
                                 />
                             </label>
                             <span>{errors?.gender?.message}</span>

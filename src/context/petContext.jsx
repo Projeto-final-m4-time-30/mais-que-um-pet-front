@@ -21,7 +21,6 @@ export const PetProvider = ({ children }) => {
     Api.post("/pet", data)
     .then((res)=>{
       Api.defaults.headers.common.Authorization = `Bearer ${token}`;
-      setPets(res)
       console.log(pets)
       toast.success("Pet cadastrado com sucesso!", { autoClose: 2000 });
     })
