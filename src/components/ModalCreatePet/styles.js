@@ -12,4 +12,18 @@ export const Container = styled.div`
 
     position: relative;
 
+    .button-close {
+        position: absolute;
+        top: 0;
+        right: 0;
+        border: none;
+        background-color: transparent;
+
+    .buttonX{
+        width: 20px;
+        height: 20px;
+        color: var(--grey-2)
+    }
+  }
+
 `

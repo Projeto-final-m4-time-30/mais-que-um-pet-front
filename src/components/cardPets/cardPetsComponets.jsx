@@ -28,7 +28,6 @@ function ListaPets() {
             key={pet.id}
             id={pet.id}
             onClick={() => {
-              console.log(pet.user_register);
               setOwnerId(() => pet.user_register);
               setModalPetOverview(pet);
               handleModalPetOpen();

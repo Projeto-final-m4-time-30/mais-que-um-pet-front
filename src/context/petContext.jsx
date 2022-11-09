@@ -8,6 +8,11 @@ export const petContext = createContext({});
 export const PetProvider = ({ children }) => {
 
   const [isCreateOpenModal, setIsCreateOpenModal] = useState(false)
+  const [openModalAdopt, setOpenModalAdopt] = useState(false);
+  const [pets, setPets] = useState([]);
+  const [pet, setPet] = useState();
+  const [modalPetIsOpen, setModalPetIsOpen] = useState(false);
+  const [modalPetOverview, setModalPetOverview] = useState({});
 
   const token = localStorage.getItem("@TokenUser:token")
 
@@ -16,10 +21,12 @@ export const PetProvider = ({ children }) => {
     Api.post("/pet", data)
     .then((res)=>{
       Api.defaults.headers.common.Authorization = `Bearer ${token}`;
+      setPets(res)
+      console.log(pets)
       toast.success("Pet cadastrado com sucesso!", { autoClose: 2000 });
     })
     .catch((err)=> {
-      toast.error("Login e/ou senha inválidos", { autoClose: 2000 });
+      toast.error("Não foi possível cadastrar o pet", { autoClose: 2000 });
       console.error("Esse é o erro", err);
     })
   }
@@ -33,6 +40,26 @@ export const PetProvider = ({ children }) => {
     }
 
 
+  
+    useEffect(() => {
+      Api.get("/pet/adoptable").then((res) => setPets(res.data));
+    }, []);
+  
+    function openModal() {
+      setOpenModalAdopt(true);
+    }
+  
+    function closeModal() {
+      setOpenModalAdopt(false);
+    }
+  
+    function handleModalPetOpen() {
+      setModalPetIsOpen(true);
+    }
+  
+    function handleModalPetClose() {
+      setModalPetIsOpen(false);
+    }
 
   return (
     <petContext.Provider
@@ -41,41 +68,7 @@ export const PetProvider = ({ children }) => {
         modalCreatePetOpen,
         modalCreatePetClose,
         isCreateOpenModal,
-        setIsCreateOpenModal
-      }}
-      >
-        {children}
-      </petContext.Provider>
-  )
-
-  const [openModalAdopt, setOpenModalAdopt] = useState(false);
-  const [pets, setPets] = useState([]);
-  const [pet, setPet] = useState();
-  const [modalPetIsOpen, setModalPetIsOpen] = useState(false);
-  const [modalPetOverview, setModalPetOverview] = useState({});
-
-  useEffect(() => {
-    Api.get("/pet/adoptable").then((res) => setPets(res.data));
-  }, []);
-
-  function openModal() {
-    setOpenModalAdopt(true);
-  }
-
-  function closeModal() {
-    setOpenModalAdopt(false);
-  }
-
-  function handleModalPetOpen() {
-    setModalPetIsOpen(true);
-  }
-
-  function handleModalPetClose() {
-    setModalPetIsOpen(false);
-  }
-  return (
-    <petContext.Provider
-      value={{
+        setIsCreateOpenModal,
         openModal,
         closeModal,
         openModalAdopt,
@@ -88,9 +81,9 @@ export const PetProvider = ({ children }) => {
         modalPetOverview,
         setModalPetOverview,
       }}
-    >
-      {children}
-    </petContext.Provider>
-  );
+      >
+        {children}
+      </petContext.Provider>
+  )
 
 };

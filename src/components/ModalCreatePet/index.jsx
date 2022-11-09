@@ -35,7 +35,7 @@ const ModalCreatePet = () =>{
         resolver: yupResolver(createPetSchema),
       });
 
-    const {createPet, modalCreatePetOpen, modalCreatePetClose, setIsCreateOpenModal, isCreateOpenModal} = useContext(petContext)
+    const {createPet, modalCreatePetClose, isCreateOpenModal} = useContext(petContext)
     
     return (
         <>
@@ -46,9 +46,9 @@ const ModalCreatePet = () =>{
             >
                 <Container>
                     <div>
-                        <button onClick={modalCreatePetClose}><AiFillCloseCircle /></button>
+                        <button className="button-close" onClick={modalCreatePetClose}><AiFillCloseCircle className="buttonX" /></button>
                     </div>
-                    <Form onSubmit={handleSubmit(createPet)}>
+                    <form onSubmit={handleSubmit(createPet)}>
                         <div>
                             <label htmlFor="name">
                                 <Input
@@ -126,7 +126,7 @@ const ModalCreatePet = () =>{
                         <div>
                             <Button type="submit">Cadastrar Pet</Button>
                         </div>
-                    </Form>
+                    </form>
                 </Container>
             </ ReactModal>
         </>
