@@ -14,6 +14,9 @@ const ModalPet = () => {
         </figure>
         <div>
           <h2>Pitoco</h2>
+          <span>tipo</span>
+          <span>idade</span>
+          <span>sexo</span>
           <p>
             Lorem, ipsum dolor sit amet consectetur adipisicing elit. Mollitia
             earum dolore recusandae quia. Aliquam dolores, necessitatibus ab
