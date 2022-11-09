@@ -8,7 +8,7 @@ import { AiOutlineMail } from "react-icons/ai";
 import { petContext } from "../../context/petContext";
 import { userContext } from "../../context/userContext";
 import Input from "../Input";
-import { registerSchema } from "../../validators";
+import { registerSchema, updatePetSchema } from "../../validators";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
@@ -35,7 +35,7 @@ const ModalPet = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(registerSchema),
+    resolver: yupResolver(updatePetSchema),
   });
 
   function handleEditPageOpen() {
@@ -45,7 +45,7 @@ const ModalPet = () => {
     setEditPage(false);
   }
 
-  const { modalPetIsOpen, handleModalPetClose, modalPetOverview } =
+  const { modalPetIsOpen, handleModalPetClose, modalPetOverview, updatePet } =
     useContext(petContext);
   const { owner, user } = useContext(userContext);
 
@@ -128,13 +128,43 @@ const ModalPet = () => {
           ) : (
             <>
               <h2>Edição</h2>
-              <form className="form-edit">
+              <form className="form-edit" onSubmit={handleSubmit(updatePet)}>
                 {/* description, name, pet_image, size, vaccine, age  */}
-                <Input type="text" id="description" placeholder="Descrição" />
-                <Input type="text" id="name" placeholder="Nome" />
-                <Input type="text" id="pet_image" placeholder="URL" />
-                <Input type="text" id="size" placeholder="Tamanho" />
-                <Input type="text" id="age" placeholder="Idade" />
+                <Input
+                  type="text"
+                  id="description"
+                  placeholder="Descrição"
+                  {...register("description")}
+                  error={errors?.description}
+                />
+                <Input
+                  type="text"
+                  id="name"
+                  placeholder="Nome"
+                  {...register("name")}
+                  error={errors?.name}
+                />
+                <Input
+                  type="text"
+                  id="pet_image"
+                  placeholder="URL"
+                  {...register("pet_image")}
+                  error={errors?.pet_image}
+                />
+                <Input
+                  type="text"
+                  id="size"
+                  placeholder="Tamanho"
+                  {...register("size")}
+                  error={errors?.size}
+                />
+                <Input
+                  type="text"
+                  id="age"
+                  placeholder="Idade"
+                  {...register("age")}
+                  error={errors?.age}
+                />
                 <button className="form-button-edit">Salvar alteraçãoes</button>
               </form>
             </>

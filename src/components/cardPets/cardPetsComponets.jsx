@@ -29,6 +29,7 @@ function ListaPets() {
               onClick={() => {
                 setOwnerId(() => pet.user_register);
                 setModalPetOverview(pet);
+                setPet(pet);
                 handleModalPetOpen();
               }}
             >

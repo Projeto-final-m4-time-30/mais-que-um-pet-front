@@ -32,3 +32,11 @@ export const createPetSchema = yup.object().shape({
   is_adoptable: yup.boolean().default(() => true),
   is_active: yup.boolean().default(() => true),
 });
+
+export const updatePetSchema = yup.object().shape({
+  name: yup.string().notRequired(),
+  age: yup.string().notRequired(),
+  pet_image: yup.string().notRequired(),
+  size: yup.string().notRequired(),
+  description: yup.string().notRequired(),
+});

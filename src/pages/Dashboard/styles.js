@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const ContainerPesquisa = styled.div`
-  width: 80vw;
+  width: 80%;
+  background-color: red;
   display: flex;
   margin: 4rem auto;
   justify-content: space-between;
