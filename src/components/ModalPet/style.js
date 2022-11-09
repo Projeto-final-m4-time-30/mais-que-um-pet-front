@@ -18,7 +18,7 @@ export const ModalContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: red;
+    background-color: var(--grey-0);
   }
   /* div {
     width: 80%;
@@ -34,7 +34,7 @@ export const ModalContainer = styled.div`
   .modal-info-pet {
     height: 100%;
     width: 100%;
-    background-color: red;
+    background-color: var(--grey-0);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -44,11 +44,23 @@ export const ModalContainer = styled.div`
     position: absolute;
     top: 0;
     right: 0;
+
+    .buttonX{
+      width: 20px;
+      height: 20px;
+      color: var(--grey-2)
+    }
   }
   .button-edit {
     position: absolute;
     top: 0;
     left: 0;
+
+    .buttonE{
+      width: 20px;
+      height: 20px;
+      color: var(--grey-2)
+    }
   }
   .button-donate {
     position: absolute;

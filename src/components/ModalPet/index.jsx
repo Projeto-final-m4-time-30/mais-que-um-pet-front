@@ -34,8 +34,6 @@ const ModalPet = () => {
     useContext(petContext);
   const { owner, user } = useContext(userContext);
 
-  console.log(owner);
-
   return (
     <>
       {/* <button onClick={handleModalPetOpen}>Open Modal</button> */}
@@ -47,14 +45,14 @@ const ModalPet = () => {
       >
         <ModalContainer>
           <button className="button-close" onClick={handleModalPetClose}>
-            <AiFillCloseCircle />
+            <AiFillCloseCircle className="buttonX" />
           </button>
           {modalPetOverview.user_register === user.id ? (
             <button
               className="button-edit"
               onClick={() => setEditPage(!editPage)}
             >
-              <AiTwotoneEdit />
+              <AiTwotoneEdit className="buttonE" />
             </button>
           ) : (
             <></>

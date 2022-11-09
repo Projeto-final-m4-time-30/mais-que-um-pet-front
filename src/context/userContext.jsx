@@ -16,10 +16,6 @@ export const UserProvider = ({ children }) => {
     if (ownerId) {
       Api.get("/users")
         .then((response) => {
-          console.log(
-            "*******************************************",
-            response.data
-          );
           const ownerFinded = response.data.find((user) => user.id === ownerId);
           setOwner(ownerFinded);
         })

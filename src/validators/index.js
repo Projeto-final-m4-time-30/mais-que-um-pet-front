@@ -18,23 +18,24 @@ export const registerSchema = yup.object().shape({
   password: yup
     .string()
     .required("Campo obrigatório"),
-    // .matches(
-    //   /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-    //   "Deve conter 8 caracteres,uma maiuscula, uma minuscula,um numero e um caractere especial!"
-    // ),
-  // city: yup.string().required("Campo obrigatório"),
-  // state: yup.string().required("Campo obrigatório"),
-  // district: yup.string().required("Campo obrigatório"),
-  // number: yup.string().required("Campo obrigatório"),
-  // phone: yup.string().required("Campo obrigatório"),
-  // whatsapp: yup.string().required("Campo obrigatório"),
-  // description: yup.string().required("Campo obrigatório"),
-
-
-
-
-
-
+  city: yup.string().required("Campo obrigatório"),
+  state: yup.string().required("Campo obrigatório"),
+  district: yup.string().required("Campo obrigatório"),
+  number: yup.string().required("Campo obrigatório"),
+  phone: yup.string().required("Campo obrigatório"),
+  whatsapp: yup.string().required("Campo obrigatório"),
+  description: yup.string().required("Campo obrigatório"),
 
 });
 
+export const createPetSchema = yup.object().shape({
+	name: yup.string().required("Campo obrigatório"),
+	age: yup.string().required("Campo obrigatório"),
+	gender: yup.string().required("Campo obrigatório"),
+  pet_image:yup.string().required("Campo obrigatório"),
+  size: yup.string().required("Campo obrigatório"),
+  color: yup.string().required("Campo obrigatório"),
+  species: yup.string().required("Campo obrigatório"),
+  description: yup.string().required("Campo obrigatório"),
+  vaccine: yup.string().required("Campo obrigatório")
+})
