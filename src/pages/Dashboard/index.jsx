@@ -7,6 +7,9 @@ import { userContext } from "../../context/userContext";
 import { useNavigate } from "react-router-dom";
 import ModalCreatePet from "../../components/ModalCreatePet";
 import { petContext } from "../../context/petContext";
+import ModalAdopt from "../../components/ModalAdopt";
+import ModalPet from "../../components/ModalPet";
+
 const Dashboard = () => {
   const { user, loading } = useContext(userContext);
   const { modalCreatePetOpen } = useContext(petContext);
@@ -17,12 +20,12 @@ const Dashboard = () => {
     navigate("/signin", { replace: true });
   }
 
-  console.log(user);
   if (loading) return <p>Loading...</p>;
 
   return user ? (
     <>
       <Header />
+      <ModalAdopt />
       <ContainerPesquisa>
         <BiMessageAltAdd size={40} onClick={modalCreatePetOpen}/>
         <form action="">
@@ -30,7 +33,12 @@ const Dashboard = () => {
         </form>
       </ContainerPesquisa>
       <ListaPets />
+
       <ModalCreatePet />
+
+
+      <ModalPet />
+
     </>
   ) : (
     <h1>Carregando...</h1>
