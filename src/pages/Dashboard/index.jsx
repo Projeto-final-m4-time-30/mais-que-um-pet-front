@@ -2,7 +2,7 @@ import ListaPets from "../../components/cardPets/cardPetsComponets";
 import { Header } from "../../components/Header";
 import { BiMessageAltAdd } from "react-icons/bi";
 import { ContainerPesquisa } from "./styles";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { userContext } from "../../context/userContext";
 import { useNavigate } from "react-router-dom";
 import ModalCreatePet from "../../components/ModalCreatePet";
@@ -12,7 +12,11 @@ import ModalPet from "../../components/ModalPet";
 
 const Dashboard = () => {
   const { user, loading } = useContext(userContext);
-  const { modalCreatePetOpen } = useContext(petContext);
+  const { modalCreatePetOpen, getInfoPet, pets } = useContext(petContext);
+
+  useEffect(()=>{
+    getInfoPet()
+  }, [pets])
 
   const navigate = useNavigate();
 

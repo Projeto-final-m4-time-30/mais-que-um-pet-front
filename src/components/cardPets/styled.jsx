@@ -4,6 +4,7 @@ export const ListCards = styled.ul`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-wrap: wrap;
   margin-left: 20px;
   gap: 2rem;
 `;
