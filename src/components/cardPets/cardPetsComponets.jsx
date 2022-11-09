@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Card } from "./styled";
 import { DivBotao } from "./styled";
 import { ListCards } from "./styled";
 import { Api } from "../../services/index";
+import { userContext } from "../../context/userContext";
 
 function ListaPets() {
   const [pets, setPets] = useState([]);
+  const { user } = useContext(userContext);
 
   useEffect(() => {
     Api.get("/pet/adoptable").then((res) => setPets(res.data));
@@ -29,9 +31,11 @@ function ListaPets() {
           <div>
             <h2>{pet.name}</h2>
           </div>
-          <DivBotao>
-            <button>Me Adote</button>
-          </DivBotao>
+          {user.id === pet.user_register && (
+            <DivBotao>
+              <button>Me Adote</button>
+            </DivBotao>
+          )}
         </Card>
       ))}
     </ListCards>
