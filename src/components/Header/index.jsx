@@ -3,15 +3,15 @@ import { userContext } from "../../context/userContext.jsx";
 import { HeaderStyle } from "./styles.js";
 
 export const Header = () => {
-  const { logout } = useContext(userContext);
+  const { logout, openModal, user } = useContext(userContext);
 
   return (
     <HeaderStyle>
       <div>
         <h1>Mais Que Um Pet</h1>
-        <nav>
-          <img
-            src="https://st.depositphotos.com/1146092/2108/i/600/depositphotos_21082823-stock-photo-fitness-dog.jpg"
+        <nav >
+          <img onClick={openModal}
+            src={user?.user_image?.length > 0 ? user.user_image : "https://pbs.twimg.com/profile_images/985608345741680640/dWSsB4Qb_400x400.jpg" }
             alt="Foto de user"
           />
           <div>

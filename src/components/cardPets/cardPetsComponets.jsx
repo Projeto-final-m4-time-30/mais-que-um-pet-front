@@ -1,8 +1,8 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext} from "react";
 import { Card } from "./styled";
 import { DivBotao } from "./styled";
 import { ListCards } from "./styled";
-import { Api } from "../../services/index";
+
 import { userContext } from "../../context/userContext";
 import { petContext } from "../../context/petContext";
 import ModalAdopt from "../ModalAdopt";
