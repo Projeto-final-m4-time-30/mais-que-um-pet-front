@@ -2,6 +2,13 @@ import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
     :root {
+        //Main colors
+        --purple-hover: #EB78FF;
+        --purple: #A958B8;
+        --orange: #FF6A45;
+        --orange-hover: #B35139;
+
+
         //gray scale pallete
         --grey-4: #121214;
         --grey-3: #212529;
@@ -9,7 +16,7 @@ const GlobalStyle = createGlobalStyle`
         --grey-1: #868E96;
         --grey-0: #F8F9FA;
 
-
+        //metal
         --platinum: #E6E6E6;
         --gold: #d79d39;
 
