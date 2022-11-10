@@ -2,7 +2,10 @@ import styled from "styled-components";
 
 export const ContainerPesquisa = styled.div`
   width: 80%;
-  background-color: red;
+  background-color: var(--purple);
+
+  padding: 15px;
+  border-radius: 8px;
   display: flex;
   margin: 4rem auto;
   justify-content: space-between;
@@ -10,6 +13,9 @@ export const ContainerPesquisa = styled.div`
 
   svg {
     cursor: pointer;
+    background-color: var(--grey-0);
+    color: var(--orange);
+    border-radius: 8px;
   }
 
   input {

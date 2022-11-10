@@ -1,6 +1,7 @@
 import { toast } from "react-toastify";
 import { createContext, useEffect, useState } from "react";
 import { Api } from "../services";
+import { set } from "react-hook-form";
 
 export const petContext = createContext({});
 
@@ -14,13 +15,11 @@ export const PetProvider = ({ children }) => {
 
   const token = localStorage.getItem("@TokenUser:token");
 
-<<<<<<< HEAD
   const createPet = (data) => {
-    console.log(data);
     Api.post("/pet", data)
       .then((res) => {
         Api.defaults.headers.common.Authorization = `Bearer ${token}`;
-        console.log(pets);
+        setPets((previous) => [...previous, data]);
         toast.success("Pet cadastrado com sucesso!", { autoClose: 2000 });
       })
       .catch((err) => {
@@ -30,9 +29,13 @@ export const PetProvider = ({ children }) => {
   };
 
   const updatePet = (data) => {
-    console.log(data);
     Api.patch(`/pet/${pet.id}`, data)
       .then((res) => {
+        const index = pets.findIndex((actualPet) => actualPet.id === pet.id);
+        const newPets = [...pets];
+        newPets.splice(index, 1, res.data.pet_update);
+        setPets(newPets);
+
         toast.success("Pet atualizado!", { autoClose: 2000 });
       })
       .catch((err) => {
@@ -41,13 +44,21 @@ export const PetProvider = ({ children }) => {
       });
   };
 
+  function getPetById(id) {
+    Api.get("/pet");
+  }
+
   const modalCreatePetOpen = () => {
     setIsCreateOpenModal(true);
   };
 
-  const modalCreatePetClose = () => {
-    setIsCreateOpenModal(false);
-  };
+  async function getInfoPet() {
+    try {
+      await Api.get(`/pet`);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   useEffect(() => {
     Api.get("/pet/adoptable").then((res) => setPets(res.data));
@@ -60,62 +71,21 @@ export const PetProvider = ({ children }) => {
   function closeModal() {
     setOpenModalAdopt(false);
   }
-=======
-  const createPet = (data) =>{
-    Api.post("/pet", data)
-    .then((res)=>{
-      Api.defaults.headers.common.Authorization = `Bearer ${token}`;
-      setPets(previous => [...previous, data])
-      toast.success("Pet cadastrado com sucesso!", { autoClose: 2000 });
-    })
-    .catch((err)=> {
-      toast.error("Não foi possível cadastrar o pet", { autoClose: 2000 });
-      console.error("Esse é o erro", err);
-    })
-  }
-
-    async function getInfoPet(){
-      try {
-        await Api.get(`/pet`)
-      } catch (error) {
-        console.error(error);
-      }
-    }
-
-    const modalCreatePetOpen = () =>{
-      setIsCreateOpenModal(true)
-    }
->>>>>>> 1c25a2cb4cba5540a0d3a129217d0350779f951f
 
   function handleModalPetOpen() {
     setModalPetIsOpen(true);
   }
 
-<<<<<<< HEAD
   function handleModalPetClose() {
     setModalPetIsOpen(false);
   }
-=======
-    useEffect(() => {
-      Api.get("/pet/adoptable").then((res) => setPets(res.data));
-    }, []);
-  
-    function openModal() {
-      setOpenModalAdopt(true);
-    }
-  
-    function closeModal() {
-      setOpenModalAdopt(false);
-    }
-  
-    function handleModalPetOpen() {
-      setModalPetIsOpen(true);
-    }
-  
-    function handleModalPetClose() {
-      setModalPetIsOpen(false);
-    }
->>>>>>> 1c25a2cb4cba5540a0d3a129217d0350779f951f
+  const modalCreatePetClose = () => {
+    setIsCreateOpenModal(false);
+  };
+
+  useEffect(() => {
+    Api.get("/pet/adoptable").then((res) => setPets(res.data));
+  }, []);
 
   return (
     <petContext.Provider
