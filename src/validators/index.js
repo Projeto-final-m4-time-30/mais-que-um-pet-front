@@ -13,10 +13,30 @@ export const registerSchema = yup.object().shape({
   password: yup.string().required("Campo obrigatório"),
 });
 
+// export const createPetSchema = yup.object().shape({
+//   name: yup.string().required("Campo obrigatório"),
+//   age: yup.string().required("Campo obrigatório"),
+//   gender: yup.string().required("Campo obrigatório"),
+// });
+
+//   password: yup
+//     .string()
+//     .required("Campo obrigatório"),
+
+// });
+
 export const createPetSchema = yup.object().shape({
   name: yup.string().required("Campo obrigatório"),
   age: yup.string().required("Campo obrigatório"),
   gender: yup.string().required("Campo obrigatório"),
   is_adoptable: yup.boolean().default(() => true),
   is_active: yup.boolean().default(() => true),
+});
+
+export const updatePetSchema = yup.object().shape({
+  name: yup.string().notRequired(),
+  age: yup.string().notRequired(),
+  pet_image: yup.string().notRequired(),
+  size: yup.string().notRequired(),
+  description: yup.string().notRequired(),
 });

@@ -7,6 +7,9 @@ export const ListCards = styled.ul`
   flex-wrap: wrap;
   margin-left: 20px;
   gap: 2rem;
+
+  width: 80%;
+  margin: 0 auto;
 `;
 export const Card = styled.li`
   border: 4px solid #b0b3b6;
