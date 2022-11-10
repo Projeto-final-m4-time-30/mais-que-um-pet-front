@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext,useState } from "react";
 import ReactModal from "react-modal";
 import { ModalContainerAdopt } from "./style";
 import { AiFillCloseCircle } from "react-icons/ai";
@@ -50,7 +50,8 @@ const ModalAdopt = () => {
           <img
             src={
               pet?.info_pet.pet_image ? pet.info_pet.pet_image : urlImageDefault
-            }
+
+            }alt={""}
           />
         </figure>
 

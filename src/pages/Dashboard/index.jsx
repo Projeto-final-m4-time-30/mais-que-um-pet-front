@@ -9,6 +9,7 @@ import ModalCreatePet from "../../components/ModalCreatePet";
 import { petContext } from "../../context/petContext";
 import ModalAdopt from "../../components/ModalAdopt";
 import ModalPet from "../../components/ModalPet";
+import EditUser from "../../components/CardEditiUser/editUser";
 
 const Dashboard = () => {
   const { user, loading } = useContext(userContext);
@@ -37,10 +38,8 @@ const Dashboard = () => {
         </form>
       </ContainerPesquisa>
       <ListaPets />
-
       <ModalCreatePet />
-
-
+      <EditUser />
       <ModalPet />
 
     </>

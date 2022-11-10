@@ -8,7 +8,7 @@ import { AiOutlineMail } from "react-icons/ai";
 import { petContext } from "../../context/petContext";
 import { userContext } from "../../context/userContext";
 import Input from "../Input";
-import { registerSchema, updatePetSchema } from "../../validators";
+import { updatePetSchema } from "../../validators";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
@@ -37,13 +37,6 @@ const ModalPet = () => {
   } = useForm({
     resolver: yupResolver(updatePetSchema),
   });
-
-  function handleEditPageOpen() {
-    setEditPage(true);
-  }
-  function handleEditPageClose() {
-    setEditPage(false);
-  }
 
   const { modalPetIsOpen, handleModalPetClose, modalPetOverview, updatePet } =
     useContext(petContext);

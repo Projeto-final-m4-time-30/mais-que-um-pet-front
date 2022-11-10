@@ -20,6 +20,7 @@ export const HeaderStyle = styled.header`
       img {
         width: 3rem;
         border-radius: 50%;
+        cursor: pointer;
       }
 
       button {

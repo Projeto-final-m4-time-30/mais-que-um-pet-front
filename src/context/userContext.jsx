@@ -8,7 +8,7 @@ export const userContext = createContext();
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
-
+  const [isUpdatedOpenModal, setIsUpdatedOpenModal] = useState(false);
   const [owner, setOwner] = useState({});
   const [ownerId, setOwnerId] = useState(0);
 
@@ -89,17 +89,37 @@ export const UserProvider = ({ children }) => {
     navigate("/signin");
   };
 
+  const editUser = (data) => {
+    try {
+      const id = user.id;
 
-  const editUser = () => {
-    const id = user.data.id
-    console.log(id)
-    Api.patch(`/users/${id}`)
-    
+      const response = Api.patch(`/users/${id}`, data);
+      Api.defaults.headers.common.Authorization = `Bearer ${token}`;
+      setUser(response);
+      toast.success("Usuario atualizado! :)", {
+        autoClose: 2000,
+      });
+    } catch (err) {
+      console.log("err", err);
+      toast.error("Algo deu errado! Confira todos os campos preenchidos", {
+        autoClose: 2000,
+      });
+    }
   };
+  function openModal() {
+    setIsUpdatedOpenModal(true);
+  }
 
+  function closeModal() {
+    setIsUpdatedOpenModal(false);
+  }
   return (
     <userContext.Provider
       value={{
+        openModal,
+        closeModal,
+        isUpdatedOpenModal,
+        setIsUpdatedOpenModal,
         editUser,
         loginUser,
         registerUser,

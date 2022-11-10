@@ -1,7 +1,7 @@
 import { toast } from "react-toastify";
 import { createContext, useEffect, useState } from "react";
 import { Api } from "../services";
-import { set } from "react-hook-form";
+
 
 export const petContext = createContext({});
 
@@ -44,9 +44,7 @@ export const PetProvider = ({ children }) => {
       });
   };
 
-  function getPetById(id) {
-    Api.get("/pet");
-  }
+  
 
   const modalCreatePetOpen = () => {
     setIsCreateOpenModal(true);
