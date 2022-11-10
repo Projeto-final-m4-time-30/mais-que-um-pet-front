@@ -73,9 +73,18 @@ export const UserProvider = ({ children }) => {
     navigate("/signin");
   };
 
+
+  const editUser = () => {
+    const id = user.data.id
+    console.log(id)
+    Api.patch(`/users/${id}`)
+    
+  };
+
   return (
     <userContext.Provider
       value={{
+        editUser,
         loginUser,
         registerUser,
         logout,
