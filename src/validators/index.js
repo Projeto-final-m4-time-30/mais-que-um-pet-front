@@ -7,34 +7,36 @@ export const loginSchema = yup.object().shape({
 });
 
 export const registerSchema = yup.object().shape({
-  user_name: yup
-    .string()
-    .matches(
-      /^([a-zA-Zà-úÀ-Ú0-9]|-|_|\s)+$/,
-      "Esse campo deve conter apenas letras"
-    )
-    .required("Campo obrigatório"),
+  user_name: yup.string().required("Campo obrigatório"),
   email: yup.string().email("E-mail inválido").required("Campo obrigatório"),
-  password: yup
-    .string()
-    .required("Campo obrigatório"),
-    // .matches(
-    //   /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
-    //   "Deve conter 8 caracteres,uma maiuscula, uma minuscula,um numero e um caractere especial!"
-    // ),
-  // city: yup.string().required("Campo obrigatório"),
-  // state: yup.string().required("Campo obrigatório"),
-  // district: yup.string().required("Campo obrigatório"),
-  // number: yup.string().required("Campo obrigatório"),
-  // phone: yup.string().required("Campo obrigatório"),
-  // whatsapp: yup.string().required("Campo obrigatório"),
-  // description: yup.string().required("Campo obrigatório"),
 
-
-
-
-
-
-
+  password: yup.string().required("Campo obrigatório"),
 });
 
+// export const createPetSchema = yup.object().shape({
+//   name: yup.string().required("Campo obrigatório"),
+//   age: yup.string().required("Campo obrigatório"),
+//   gender: yup.string().required("Campo obrigatório"),
+// });
+
+//   password: yup
+//     .string()
+//     .required("Campo obrigatório"),
+
+// });
+
+export const createPetSchema = yup.object().shape({
+  name: yup.string().required("Campo obrigatório"),
+  age: yup.string().required("Campo obrigatório"),
+  gender: yup.string().required("Campo obrigatório"),
+  is_adoptable: yup.boolean().default(() => true),
+  is_active: yup.boolean().default(() => true),
+});
+
+export const updatePetSchema = yup.object().shape({
+  name: yup.string().notRequired(),
+  age: yup.string().notRequired(),
+  pet_image: yup.string().notRequired(),
+  size: yup.string().notRequired(),
+  description: yup.string().notRequired(),
+});

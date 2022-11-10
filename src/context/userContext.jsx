@@ -9,6 +9,22 @@ export const UserProvider = ({ children }) => {
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
 
+  const [owner, setOwner] = useState({});
+  const [ownerId, setOwnerId] = useState(0);
+
+  useEffect(() => {
+    if (ownerId) {
+      Api.get("/users")
+        .then((response) => {
+          const ownerFinded = response.data.find((user) => user.id === ownerId);
+          setOwner(ownerFinded);
+        })
+        .catch((error) => {
+          console.error("Esse é o erro", error);
+        });
+    }
+  }, [ownerId]);
+
   const navigate = useNavigate();
   const token = localStorage.getItem("@TokenUser:token");
 
@@ -92,6 +108,8 @@ export const UserProvider = ({ children }) => {
         loading,
         setUser,
         back,
+        setOwnerId,
+        owner,
       }}
     >
       {children}

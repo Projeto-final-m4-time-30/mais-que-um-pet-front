@@ -2,30 +2,47 @@ import ListaPets from "../../components/cardPets/cardPetsComponets";
 import { Header } from "../../components/Header";
 import { BiMessageAltAdd } from "react-icons/bi";
 import { ContainerPesquisa } from "./styles";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { userContext } from "../../context/userContext";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import ModalCreatePet from "../../components/ModalCreatePet";
+import { petContext } from "../../context/petContext";
+import ModalAdopt from "../../components/ModalAdopt";
+import ModalPet from "../../components/ModalPet";
+
 const Dashboard = () => {
   const { user, loading } = useContext(userContext);
+  const { modalCreatePetOpen, getInfoPet, pets } = useContext(petContext);
+
+  useEffect(()=>{
+    getInfoPet()
+  }, [pets])
+
   const navigate = useNavigate();
 
   if (!user) {
     navigate("/signin", { replace: true });
   }
 
-  console.log(user);
   if (loading) return <p>Loading...</p>;
 
   return user ? (
     <>
       <Header />
+      <ModalAdopt />
       <ContainerPesquisa>
-        <BiMessageAltAdd size={40} />
+        <BiMessageAltAdd size={40} onClick={modalCreatePetOpen}/>
         <form action="">
           <input type="text" />
         </form>
       </ContainerPesquisa>
       <ListaPets />
+
+      <ModalCreatePet />
+
+
+      <ModalPet />
+
     </>
   ) : (
     <h1>Carregando...</h1>
